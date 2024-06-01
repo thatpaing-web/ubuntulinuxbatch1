@@ -1,0 +1,16 @@
+=> tree (need to install)
+
+    tree 
+    sudo apt install tree 
+    tree
+
+    cd myzip/
+    ls -l
+    tree
+
+    tree -d         = List directories only (folder only)
+    tree -D
+    tree -C         = Colorize output (for core cmd)
+
+    ls --color      = colorize output (for core cmd)
+----------------------------------------------

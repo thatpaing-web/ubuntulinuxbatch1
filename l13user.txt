@@ -1,0 +1,350 @@
+=> For Shutdown 
+sudo poweroff  
+
+
+=> For restart (reboot)
+sudo reboot
+
+=> Check currently user 
+    who                     // administrator :1           2024-03-02 18:00 (:1)
+    whoami                  // administrator
+
+
+=> Check host name (user_name & host_name are not same, host_name is Device_Name)
+    hostname                // administrator
+    cat /etc/hostname       //administrator
+
+=> Change Host Name
+    hostnamectl set-hostname ashinsumana
+    hostname                    //administrator
+    sudo reboot
+
+----------------------------------------------------------------
+
+=> Server Uptime
+    uptime
+    top
+    Ctrl + c [for exit]
+
+    -> using uptiem plugin
+        sudo apt-get install glances
+        glances
+        Ctrl + c [for exit]
+
+        hostnamectl 
+----------------------------------------------------------------
+
+=> Check 32bit processor or 64bit processor 
+    uname 
+    uname -a                        // Linux administrator 6.5.0-21-generic #21~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Feb  9 13:32:52 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+    uname -i (or) uname -m          // x86_64
+    getconf LONG_BIT                // 64
+
+----------------------------------------------------------------
+
+=> check Ubuntu Version 
+    hostnamectl                     //detail info ...
+    cat /etc/os-release             //detail info ...
+    cat /etc/issue                  //Ubuntu 22.04.4 LTS \n \l
+----------------------------------------------------------------
+
+=> Upgrade New OS Version 
+    hostnamectl 
+    do-release-upgrade -c              (check for a new Ubuntu release version before upgrade)
+    sudo do-release-upgrade             (upgrade)
+
+---------------------------------------------------------------- 
+
+
+=> Login as Root User 
+    apt-get update          //13: Permission denied 
+
+    sudo -s 
+    Enter password 
+    whoami
+    apt-get update
+    exit 
+
+    (or)
+
+    sudo su
+    enter password 
+    whoami 
+    exit 
+
+
+
+    =>Setpassword or changing root's password 
+    sudo passwd root 
+    new password : 123456789
+    return new password : 123456789 
+
+----------------------------------------------------------------
+
+=>Login as Root User 
+    =>Method 1
+    sudo -s                             // root@administrator:/home/administrator#
+    whoami                              // root 
+    exit    
+
+    => Method 2
+    sudo su                             // root@administrator:/home/administrator#
+    whoami                              // root
+    exit 
+
+    => Method 3                         (su = switch user)
+    su -                                // root@administrator:~# 
+    password : 123456789 
+    whoami                              // root 
+    exit (or) su administrator  
+
+    => Method 4 
+    su                                  // root@administrator:/home/administrator#
+    whoami                              // root 
+    password : 123456789 
+    exit
+
+
+=> Changing Password of Current User 
+    su 
+    password : 123456789
+    whoami 
+
+    passwd  
+    Current Password : thu657mg
+    New Password : 123456789abc
+    Retry New Password : 123456789abc
+
+
+
+=>Create New User Account
+    => Method 1 (create user without userFolder)
+        sudo useradd user1                      [just created account , without user1 folder]
+        cd /
+        cd home/
+        ls          (administrator)
+
+    => Method 2  (Create user with userFolder)
+        sudo useradd user2 -m   (m = migration) [cd / , cd home , ls = you will see system created user2 folder in under home]
+        cd /
+        cd home/
+        ls          (administrator user2)
+
+        sudo useradd user3 -m   
+        cd /
+        cd home/
+        ls          (administrator user2 user3)
+
+
+    => Display all users 
+        compgen -u                                          (Only username)
+        getent passwd       (or)       cat /etc/passwd      (All info)
+
+
+    => Display single users 
+        getent passwd user1                     (single user all info)
+        id                                      (current login group detail info)
+        id user1                                (single user group info)
+
+
+
+    =>  Set new user password in terminal 
+        sudo passwd user1 
+        Current Password :
+        new password : 123456789 
+        return new password : 123456789
+
+        sudo passwd user2 
+        new password : 123456789 
+        return new password : 123456789
+
+        sudo passwd user3
+        new password : 123456789 
+        return new password : 123456789
+
+
+    => Switch user in terminal 
+        su user1 
+        password : 123456789 
+        whoami 
+        exit 
+
+        su user2 
+        password : 123456789 
+        whoami 
+        exit 
+
+        su user3 
+        password : 123456789 
+        whoami 
+        exit 
+
+
+
+        ls -1 
+        su user1
+        password : 123456789 
+        whoami 
+        cd
+        cd / 
+        ls 
+        cd home 
+        ls -l 
+        cd administrator                    // error can't access 
+        cd user2                            // error can't access
+        mkdir userfolder
+        ls 
+        exit 
+
+
+
+        ls -1 
+        su user2
+        password : 123456789 
+        whoami 
+        cd / 
+        ls 
+        cd home 
+        ls -l 
+        cd administrator                    // error can't access 
+        cd user3                            // error can't access
+        cd user2
+        mkdir userfolder2 
+        echo "Hello" > file0.txt 
+        ls 
+        exit
+
+        ls -1 
+        su users3
+        password : 123456789 
+        whoami 
+        cd / 
+        ls 
+        cd home 
+        ls -l 
+        cd administrator                    // error can't access 
+        cd user2                            // error can't access
+        cd users3
+        mkdir userfolder3 
+        echo "Hello" > file0.txt 
+        ls 
+        exit  
+
+
+    => Delete User 
+        => Method  1
+            sudo deluser user2  (or) sudo userdel user1         (delete user without deleting user files and directories)
+
+        => Method 2
+            sudo deluser --remove-home users3                   (delete user deleting user files and directories under home folder)
+
+
+
+        id user2
+        id users3
+        compgen -u 
+        cd /
+        ls 
+        cd home                                     (result = remain only administrator & user2 folders)
+        ls -l
+
+
+note:: user တည်ေဆာက်လှျင် group ပါ တည်ေဆာက်ေပးသည်။
+
+    sudo useradd user1  (without message / without password / without info)
+    compgen -u 
+
+    sudo adduser user2 (with message / with password / with info)
+    compgen -u 
+
+
+    sudo useradd user3 -m 
+    compgen -u
+
+    => sudo passwd user3 
+            new password : 123456789
+            retype new password : 123456789
+
+    => su user3 
+        password : 123456789
+        whoami 
+        exit 
+        whoami
+
+
+
+=> Lock or unlock user password
+    sudo passwd -l user3            (Lock)
+    sudo passwd -u user3            (Unlock)
+
+    sudo passwd -l user3            (l = lock)
+    su user3 
+    password : 123456789    (Authentication failure)
+    whoami
+
+
+    sudo passwd -u user3            (u = unlock)
+    su user3 
+    password : 123456789    (Authentication failure)
+    whoami
+    exit 
+
+
+=> Rename User 
+    compgen -u 
+    sudo useradd user4 -m     //create user4 -m 
+    sudo passwd user4         //create password 
+    new password = 123456789
+    retry new password = 123456789
+
+    sudo useradd user5 -m     //create user4 -m 
+    sudo passwd user5         //create password 
+    new password = 123456789
+    retry new password = 123456789
+
+    whoami 
+    cd / 
+    ls 
+    cd home 
+    ls -l
+    cd 
+
+    su user4 
+    password = 123456789
+    whoami 
+    exit 
+    whoami 
+
+->  Method 1             (user name changed but home/user4 directory will not change)
+    sudo usermod -l user40 user4            [ l = log]
+
+->  Method 2             (changed user name and home/user4 directory in the same time)
+    sudo usermod -l user50 -d /home/user50 -m user5
+
+    whoami 
+    cd / 
+    ls 
+    cd home 
+    ls -l
+    cd 
+
+    su user40
+    password = 123456789
+    whoami 
+    exit 
+    whoami 
+
+
+    su user50 
+    password = 123456789
+    whoami 
+    exit 
+    whoami 
+
+    man cat (man = manual)
+    id
+    pwd 
+    hostname
+
+
+

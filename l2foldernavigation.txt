@@ -1,0 +1,72 @@
+=>Folder Navigation 
+.       = This directory 
+..      = The parent directory 
+cd      = Go to next directory 
+cd -    = Change to the previous directory 
+/       = Directory separator (forward slash)
+
+=> Check current directory
+ pwd        /home/sumana
+
+ ls 
+ ls ..      sumana
+ ls ../.. 
+
+ ctrl + t 
+ ls Music/
+ ls 
+ ls folderone/
+ ls 
+ cd 1/
+ ls 
+ cd ..
+ ls
+ cd .. 
+ ls 
+ pwd        /home/sumana/Music
+ cd 'folder two'
+ ls 
+ cd ..
+ pwd 
+ cd folder\ two
+
+
+ => ctrl + alt + t 
+ ls 
+ cd Music/
+ ls 
+ cd folderone
+ ls 
+ cd 1/
+cd -       /home/sumana/Music/folderone
+cd -        /home/sumana/Music/folderone/1
+cd -       /home/sumana/Music/folderone
+cd -        /home/sumana/Music/folderone/1
+
+
+
+ => ctrl + alt + t 
+ ls 
+ cd Music/
+ ls 
+ cd folderone
+ ls 
+ cd 1/
+ ls
+cd --       /home/sumana/
+
+ => ctrl + alt + t 
+ ls 
+ cd Music/
+ ls 
+ cd folderone
+ ls 
+ cd 1/
+ ls
+cd /       /home/sumana/
+
+Note :
+cd and cd --        = under to home directory 
+cd /                = under to root directory 
+
+

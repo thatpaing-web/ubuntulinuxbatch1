@@ -1,0 +1,107 @@
+=> Symbolic  Link (folder shortcut is called in windows)
+
+
+=> ln Same Folder
+
+    ls -l 
+    mkdir -p l11folder
+    ls -l 
+    cd l11folder 
+    echo "Hello sir" > file0.txt 
+    ls
+    cat file0.txt
+
+=> create folder Shortcut
+    ln -s l11folder l11shortcut 
+    ls -l 
+    cd l11shortcut 
+    ls -l 
+    cat file0.txt 
+
+    cd -
+    cd l11folder
+    ls 
+    echo "Hello world" > file1.txt 
+
+    cd - 
+    cd l11shortcut
+    ls 
+    cat file1.txt 
+
+
+    echo "Hello Earch" > file2.tt 
+    ls
+
+    cd - 
+    cd l11folder
+    ls 
+    cat file2.txt   
+
+    ---------------
+
+=> remove Symboliclink folder
+
+    cd -
+    rm -rf l11shortcut 
+    ls -l 
+    cd l11folder 
+    ls
+
+----------------
+
+=> remove Original folder 
+    cd - 
+    ln -s l11folder l11shortcut 
+    ls -l 
+
+    cd l11shortcut 
+    ls 
+
+    cd - 
+    rm -rf l11folder
+    ls -l 
+
+
+    cd l11shortcut      (can't open , cuz original folder deleted )
+    rm -rf l11shortcut
+
+    ----------------
+
+=> ln Different folder 
+
+    mkdir -p l11folder 
+    cd l11folder 
+    echo "Hello sir" > file0.txt 
+    ls 
+    cat file0.txt 
+
+    cd 
+    ls 
+    cd Desktop 
+    ls -l 
+    ln -s l11folder l11shortcut (not working)
+    ln -s ~/Documents/ubuntulinuxbath1/l11folder l11shortcut 
+    cd l11shortcut 
+    ls
+
+    cd - 
+    rm -rf l11shortcut 
+
+
+(or)
+
+   => error
+    ln -s l11folder ~/Desktop/l11shortcut
+    cd 
+    ls 
+    cd Desktop
+    ls -l 
+    cd l11shortcut  (not working , cuz link  was l11shortcut -> l11folder)
+
+    ln -s ~/Documents/ubuntulinuxbath1/l11folder ~/Desktop/l11shortcut
+    cd 
+    cd Desktop
+    ls -l 
+    cd l11shortcut
+
+

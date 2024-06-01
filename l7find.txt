@@ -1,0 +1,12 @@
+=>find
+
+
+find 
+ctrl + c (stop)
+
+
+Note:: * means all/any
+    find -name l5file.txt
+    find -name '*l5file.txt*'
+    find -name '*l5file.txt'
+    find -name 'l5file.txt*'

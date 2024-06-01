@@ -1,0 +1,405 @@
+=> File Permission 
+    compgen -u
+    sudo useradd user10 -m
+    sudo passwd user10 
+    new password : 123456789
+    retype password : 123456789
+    
+    whoami              // administrator
+    cd /
+    ls 
+    cd home 
+    ls -l 
+    cd user10           // user10: Permission denied
+    exit 
+
+    su -
+    password: 123456789abc
+    whoami              // root
+    cd /
+    ls 
+    cd home 
+    ls -l 
+    cd user10           // can access 
+    pwd 
+    exit
+
+    su user10 
+    123456789
+    whoami              //user10
+    cd /
+    ls 
+    cd home 
+    ls -l 
+    cd user10           // can access 
+    pwd 
+    exit
+
+=> Remove Permission
+    su user10 
+    123456789 
+    whoami              //user10
+    cd /
+    ls 
+    cd home 
+    ls -l 
+    
+
+    -> remove group permission 
+        chmod g-x user10 
+        chmod g-w user10 
+        chmod g-r user10 
+
+        cd user10       // can access 
+        pwd             // /home/user10
+        cd / 
+        cd home 
+        ls -l 
+
+        whoami              // user10 
+    -> Remove other permission 
+        chmod o-r user10    
+        chmod o-w user10    
+        chmod o-x user10 
+
+        cd user10       // can access 
+        pwd             // /home/user10
+        cd / 
+        cd home 
+        ls -l 
+
+        whoami       // user10 
+    -> Remove user permission 
+    chmod u-r user10 
+    chmod u-w user10 
+    chmod u-x user10 
+
+    cd user10       // Permission denied 
+    pwd             // /home
+    cd / 
+    cd home 
+    ls -l 
+
+=> Add Permission 
+    whoami      //user10 
+    -> Add Other Permission 
+        chmod o+r user10
+        chmod o+rwx user10
+        ls -l 
+
+
+    -> Add group permission 
+        chmod g+rwx user10 
+        ls -l 
+
+    -> Add user Permission 
+        chmod u+rwx user10 
+
+        cd / 
+        ls 
+        cd home 
+        ls -l 
+
+=> Remove All Permission (Per)
+    whoami          //user10 
+    chmod a-r user10 
+    chmod a-w user10 
+    chmod a-x user10 
+    ls -l 
+
+=> Add All Permission 
+    whoami          //user10 
+    chmod a+r user10 
+    chmod a+w user10 
+    chmod a+x user10 
+    ls -l
+
+=> Remove / Add All Permission 
+    whoami          //user10 
+    chmod a-rwx user10 
+    ls -l 
+
+    chomd a+rwx user10 
+    ls -l
+
+-------------
+
+
+
+=> files permission for group members
+
+    compgen -u 
+    compgen -g 
+
+    whoami                  // administrator
+    cd /
+    cd home 
+    ls -l
+    cd user10 
+    mkdir folder1byadmin
+    ls
+
+=> remove Group  & create folder
+    su user10
+    123456789
+    cd / 
+    cd home 
+    ls -l 
+    chmod g-rwx user10
+    ls -l 
+    exit 
+
+
+    whoami          //administrator
+    cd /
+    cd home 
+    ls -l
+    cd user10 
+    ls          // folder1byadmin
+    mkdir folder2byadmin 
+    ls           // folder1byadmin folder2byadmin
+
+
+=> remove Other 
+
+    su user10 
+    123456789
+    cd /
+    cd home 
+    ls -l 
+    chmod o-rwx user10
+    exit 
+
+    whoami          //administrator 
+    cd /
+    cd home
+    ls -l
+    cd user10       // user10: Permission denied
+
+-> if remove permission group & other , can't access to enter. It can access to enter only user.
+------------------------------------------------------------------
+
+    compgen -u 
+    compgen -g 
+
+    su user10 
+    123456789
+    cd /
+    cd home 
+    ls -l 
+    chmod g+rwx user10 
+    ls -l 
+    exit 
+
+    su user2 
+    123456789
+    cd /
+    cd home 
+    ls -l 
+    cd user10       //permission denied    | cuz the permission has user & group
+    exit 
+
+
+    compgen -g 
+    groups user10               (check owner)
+    getent group user10         (check members)
+    members user10 
+
+    sudo adduser user2 user10 
+    groups user10               // user10 : user10
+    getent group user10         // user10:x:1002:user2
+    members user10              // user10 user2
+
+
+    su user2
+    123456789
+    cd / 
+    cd home 
+    cd user10
+    ls                              // folder1byadmin  folder2byadmin 
+    mkdir folder3byuser2
+    ls                              // folder1byadmin  folder2byadmin  folder3byuser2
+    rm -rf folder2byadmin
+    ls                              // folder1byadmin  folder2byadmin
+    exit 
+
+    sudo gpasswd -d user2 user10 
+    members user10                  // user10
+
+    su user2 
+    123456789 
+    cd /
+    cd home 
+    ls -l 
+    cd user10       //permission denied 
+    exit 
+
+    ----------------------------
+    Home work :: create mygroup folder and add user10 & user2 and than can enter user2 to user10 
+[
+    mygroup
+    user10
+    user2 
+]
+
+    sudo addgoup mygroup 
+    compgen -g 
+    groups mygroup          // (see owner) no such user
+
+    sudo adduser user2 mygroup 
+    sudo adduser user10 mygroup 
+    exit 
+
+    compgen -g 
+
+    members mygroup                 // user2 user10
+
+    su user2 
+    123456789
+    cd /
+    cd home
+    ls -l
+    cd user10                   // Permission denied
+
+---------------------------
+
+    =>change group ownership        (chgrp = change group ownership | -R = Recursively , to recursively change the group ownership of all files and directories under a give directory || -R is optional , it's ok , is or not)
+
+    Syntax : sudo chgrp -R groupname directory
+            
+    
+        su user2 
+        123456789
+        cd /
+        cd home
+        ls -l
+        cd user10                   // Permission denied
+        exit
+
+
+        whoami              // administrator
+        cd /
+        cd home
+        ls -l
+
+
+        sudo chgrp -R user2 user10
+
+        ls -l 
+
+
+        exit 
+
+        su user2 
+        123456789
+        cd /
+        cd home
+        ls -l
+        cd user10
+        pwd 
+        exit
+
+        su user3 
+        123456789
+        cd /
+        cd home
+        ls -l
+        cd user10           // Permission denied
+        pwd 
+        exit
+
+        getent group mygroup 
+        members mygroup
+
+        sudo adduser user3 mygroup
+
+        getent group mygroup 
+        members mygroup
+
+        whoami                      // administrator
+        cd  /
+        cd home 
+        ls -l 
+
+        sudo chgrp -R mygroup user10 
+        ls -l
+
+
+        su user3 
+        123456789
+        cd /
+        cd home
+        ls -l
+        cd user10          
+        pwd                     /home/user10
+        whoami                  // user3
+        exit
+
+
+        whoami                      // administrator
+        cd  /
+        cd home 
+        ls -l 
+
+        sudo chgrp -R user10 user10 
+        ls -l
+
+
+        su user2 
+        123456789
+        cd /
+        cd home
+        ls -l
+        cd user10               // permission denied        
+        exit
+------------------------------------------------------------------------
+
+=> Change Folder Ownership 
+    Syntax : sudo chown -R newowner:groupname directory (chown = change file owner and group)
+
+    whoami                      // administrator
+    cd  /
+    cd home 
+    ls -l 
+
+    sudo chown -R user2:user10 user10 
+    ls -l
+
+
+    su user2
+    123456789
+    cd /
+    cd home 
+    ls -l 
+    cd user10 
+    pwd                                 // /home/user10
+    whoami                              // user2
+    exit
+
+
+------------------------------------------------------------------------
+
+=> Permission Using Numeric Mode 
+[
+    chmod ugo+r directory 
+    (or)
+    chmod 444 directory 
+]
+
+
+
+su user2 
+123456789
+cd /
+cd home 
+ls -l 
+
+chmod 777 user2 
+ls -l 
+
+chmod 444 user2 
+ls -l 
+
+chmod 755 user2 
+ls -l
+

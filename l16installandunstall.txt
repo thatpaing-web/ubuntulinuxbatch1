@@ -1,0 +1,21 @@
+=> Install Package & Remove Package 
+
+    => Method 1 
+        Using the Ubuntu Software Center 
+
+
+    => Method 2 
+        -> Finding Software Package 
+
+            Ctl + Alt + T 
+            sudo dpkg --list 
+
+
+        -> Listing all Installed Software Package onLinux 
+            sudo apt list --Installed
+
+
+    => Method 3 
+        Facial DEB download file install (.deb files on Ubuntu and Debian-based Linux Distributins)
+
+        8IN

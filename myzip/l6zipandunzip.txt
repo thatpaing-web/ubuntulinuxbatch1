@@ -1,0 +1,8 @@
+=>Zip 
+    zip l1sample.zip l1intro.rxt 
+    zip l5smaple.zip l5examplebackup.txt l5file.txt l5sample.txt
+    zip l3sample.zip l3history.txt l4folder.txt myfolder9 yourfolder8
+    zip allfiles *       (* all / any)
+
+
+=>Unzip

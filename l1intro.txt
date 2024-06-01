@@ -1,0 +1,76 @@
+=>32bit vs 64bit
+
+Free
+NOt user-friendly 
+Very reliable
+bast for multi-tasking
+Very secure
+open to public
+
+=>Linux Kernal
+
+=>Linux Distribution
+https://distrowatch.com 
+https://distrowatch.com > (Menu Bar) > DistroWatch.com > Page Hit Ranking
+https://distrowatch.com/dwres.php?resource=popularity
+
+Ubuntu              Free
+CentOS              Free
+Redhat              Paid (Not Open Source)
+Fedora              Free
+SuSe                Free and Paid 
+Debian              Free
+Linux Mint          Free
+Arch Linux          Free
+
+=>Open Terminal (Linux is Case sensitive Operation System)
+ctl + alt + t
+
+
+=> Linux color Coading
+Blue    =   Directory (such as url,etc..)
+Skyblue =   Symbolic link file (shortcut)
+Red     =   Archive file (Zip,tar,tar.gz etc)
+Green   =   Executable or recognized data file 
+Pink    =   Graphic image file 
+
+
+
+=>Common Directories 
+/       "Root" the top of the file system 
+/bin    Binary or executable programs
+/etc    System configuration files
+/home   home directory. it is the default current directory 
+/opt    Optional or third-party software
+/tmp    Temporty space,typically cleared on reboot
+/usr    User related programs
+/var    Variable data,most notably log files 
+
+
+=>Basic Line comands
+ls  - Lists directory contents 
+cd  - Changes the current directory 
+pwd - Display the present working directory 
+cat - Concatenates and display file 
+echo - Display areguments to the screen 
+exit - Exits the shell or your current session
+clear - Clear the screen 
+
+
+=>APT (Advanced Packaging Tool) 
+    Two part of update
+        1. package update
+        2. version update (Application update)
+
+-> need to update and upgrade before every software install
+    sudo apt-get update 
+    sudo apt update
+
+    sudo apt-get upgrade (or) sudo apt-get upgrade -y
+    -> sudo apt upgrade (or) sudo apt upgrade -y
+
+        -> update use for package 
+        -> upgrade use for version
+    
+-> combine update and upgrade one time 
+    sudo apt-get update && sudo apt-get upgrade

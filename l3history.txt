@@ -1,0 +1,67 @@
+=>History Comments 
+
+=> Clear Terminal 
+clear
+ctrl + m + l
+ctrl + m (new line)
+ctrl + l 
+
+=> Close Terminal 
+exit 
+ctrl + d 
+
+
+=> Cursor to Start character in Terminal 
+Ctrl + a 
+
+=> Cursor to end character in Terminal 
+Ctrl + e 
+
+
+=> Find used commands again
+ctrl+r
+enter (if you want to use)
+ctrl+g (if you want to cancel)
+
+=> Command Callback 
+Press up arrow key      (callback)
+Pressup down key        (callback)
+!!                      (callback last command and run again)
+history                 (see all commands history)
+history 5               (see last 5 commands history)
+!553                    (callback history from commands history and run again)
+!553:p                  (get command from commands history just print) p = print
+history -c              (clear all history)
+
+=> wget  (for download)
+wget https://img.pikbest.com/origin/09/17/01/929pIkbEsTJqQ.jpg
+ls 
+
+=> 
+ctrl + alt + t 
+ls 
+ls -l 
+ls -a 
+ls -l -a 
+ls -la (or) ls -al 
+ls -lah (or) ls -hal (or) ls -alh
+
+cat .bash_history (storage in this file all comments you used)
+vim .bah_history
+ctl + c 
+:qa 
+
+
+
+=> Ignore Space & Ignore Multi Times (not record space in the history)
+ls -l -a 
+history 
+ ls -la
+history 
+cd 
+cd 
+cd 
+cd 
+cd 
+history (if type many times ! history recorded only one times)
+

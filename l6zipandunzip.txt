@@ -1,0 +1,49 @@
+=>Zip 
+    zip l1sample.zip l1intro.txt 
+    zip l5smaple.zip l5examplebackup.txt l5file.txt l5sample.txt
+    zip l3sample.zip l3history.txt l4folder.txt myfolder9 yourfolder8
+    zip allfiles *       (* all / any)
+
+
+=>Unzip
+    mkdir -p myzip
+    cp -r allfiles.zip myzip/
+    cd myzip
+    ls 
+    du -h allfiles.zip
+    unzip allfiles.zip
+-------------------------------------------------
+
+=> tar
+
+(
+    c = tar to create a new archeive 
+    v = set the screen output to verbose then will update
+    f = points to the filename then want to arheive 
+)
+
+tar cvf l1example.tar l1intro.txt
+tar fvc l5sample.tar l5example.txt l5file.txt l5sample.txt
+tar fcv allfiles *
+
+
+=> Extract tar 
+cp -r l1example.txt mytar/ 
+cd myzip 
+ls 
+du -h l1example.tar
+tar xvf l1example.tar 
+
+-------------------------------------------------
+
+=> gzip 
+du -sh l1example.tar
+gzip -v l1example.tar
+du -sh l1example.tar.gz
+
+=>gunzip (Extract gzip)
+gunzip -v l1example.tar.gz
+    =>Extra tar 
+        tar xvf l1example.tar 
+
+Note:: the .tar.gz file need to extra two time , firstly extract .gz and then extract .tar

@@ -1,0 +1,20 @@
+=>locate (need to install if you want to find by application)
+	sudo apt install plocate
+
+    cd /var/lib/plocate
+    ls 
+
+    cd -- 
+
+    sudo updatedb (to update plocate database)
+
+    locate l5file 
+    locate -i l5file [-i means = no case sensitive]
+    locate -i 'l5file'
+    locate L5file       [no result]
+    locate 'L5file'     [no result]
+    locate -i L5file
+    locate -i *L5file   [no result]
+    locate -i l5file*   [no result]
+    locate -i '*L5file' [no result]
+    locate -i 'l5file*' [no result]
