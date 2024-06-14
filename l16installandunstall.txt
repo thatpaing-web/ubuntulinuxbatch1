@@ -1,5 +1,9 @@
 => Install Package & Remove Package 
 
+    => Package Management System 
+        (i)  apt         (Advanced Package Tool) // Debian-based system 
+        (ii) snap       // developed by canonical, the company behind Ubuntu // cross-distributions support , always up-to-date, huge size/dis space/resources
+
     => Method 1 
         Using the Ubuntu Software Center 
 
@@ -8,14 +12,55 @@
         -> Finding Software Package 
 
             Ctl + Alt + T 
-            sudo dpkg --list 
+            dpkg --list (or) dpkg -l (or) dpkg-query -l
 
+            Note : (sudo donesn't need to use display, use just crud)
 
         -> Listing all Installed Software Package onLinux 
             sudo apt list --Installed
 
 
+        -> Install Application
+            sudo apt install packagename 
+            sudo apt update (must run before install new app)
+
+            sudo apt install git                git -v                  (Version control system)
+            sudo apt install curl               curl --version          (command-line tool for transferring data with url)
+            sudo apt install wget                                       (download file from web)
+            sudo apt install vim                
+            sudo apt install vlc 
+            sudo apt install aptitude           aptitude -v  / aptitude search '~i'     (user for list install | same dpkg -l)
+            sudo apt install net-tools          ifconfig / route 
+            sudo apt install nodejs             node -v
+            sudo apt install npm                npm -v
+
+
+
+
+
     => Method 3 
         Facial DEB download file install (.deb files on Ubuntu and Debian-based Linux Distributins)
 
-        8IN
+
+
+
+        student test server password 
+
+        ssh root@152.42.198.108
+        hellostudent123ABC
+
+        sudo apt-get update 
+        sudo apt-get upgrade
+
+
+    => Using write command (Individual Message)
+        write username pts/nember               e.g write root pts/1
+
+    => Using echo command (Individual Message)
+        echo "This is aung aung, how are you friend" > /dev/pts/1
+
+    => Using wall command (Group Messae = write all send message to all logged-in users)
+        echo "Hey guy, Is verything ok?" | sudo wall
+
+
+        
