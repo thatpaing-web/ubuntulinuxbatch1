@@ -22,6 +22,9 @@
 
         -> Install Application
             sudo apt install packagename 
+            sudo apt install packagename -y (or) sudo apt install -y packagename ( -y flag = automatic Yes to prompts)
+            sudo apt install -s packagename [-s flag = simulate installation, which mean without actually installing the package]
+
             sudo apt update (must run before install new app)
 
             sudo apt install git                git -v                  (Version control system)
@@ -33,13 +36,150 @@
             sudo apt install net-tools          ifconfig / route 
             sudo apt install nodejs             node -v
             sudo apt install npm                npm -v
+            sudo apt install php                php -v
+            sudo apt install tree               tree
+
+
+            => Firewall (UFM = Uncomplicated Firewall)
+
+                ufw app list 
+                ufw status 
+                ufw status numbered 
+                ufw reload
+                sudo ufw enable         (Note : beware before you enable firewall , that can be lock yourself)
+                ufw status 
+                sudo ufw disable
+
+                sudo ufw enable
+                sudo ufw deny from 192.168.100.0            (block in ip Address)
+                sudo ufw allow from 192.168.100.0           ( Allow in ip address  )
+
+                sudo ufw deny from 192.168.100.0/20          (block a subnet)
+                
+                sudo ufw deny in on eth0 from 192.168.100.0     (block incomming connection to a network interface)
+                sudo ufw allow in eth0 from 192.168.100.0       (Allow incomming connection to a network interface)
+
+                ufw status 
+                ufw status numbered 
+
+                sudo ufw delete allow from 192.186.100.0        (delete ufw rule)
+                sudo ufw delete 3 [choose any number you want to delete]
+
+                ufw allow ssh 
+                ufw allow http 
+                ufw allow https     [just online]
+
+
+            => view details information about specific package
+                apt show packagename            eg : apt show vlc
+
+
+            => Remove package 
+                (i)     -> remove package 
+                            sudo apt remove tree 
+
+                (ii)    -> remove a package and it's configration files 
+                            sudo apt purge tree 
+
+                (iii)   -> clean up unused dependencies
+                            sudo apt autoremove
+
+                            => Option 
+                                sudo apt-get clean 
+                                sudo apt-get --fix-broken install
+
+
+             => Method 3 : Using snap (snap is already in ubuntu system but , if not installed sudo apt install snapd)
+                -> Viewing installed Snap package
+                    Ctrl + alt + t 
+                    snap list 
+
+                -> Find details about a specific snap 
+                    snap info packagename 
+                    snap find packagename 
+
+
+                -> Insatll Application 
+                    sudo snap install packagename 
+
+                    sudo snap install tree 
+                    sudo snap install vlc 
+                    sudo snap install discord 
+                    sudo snap install spotify 
+                    sudo snap install notepad-plus-plus 
+
+            => see changes or updates to snap packages 
+                snap changes 
+
+            => Remove Package 
+                (i) -> remove package 
+                        sudo snap remove tree 
+
+                (ii) -> update all installed snap packages 
+                        sudo snap refresh 
+
+
+            => Method 4 : Using PPA (Personal Package Archive)
+
+                -> Viewing installed 
+                    Ctrl + alt + t 
+                    ls -l /var/lib/apt/lists
+                    
+
+
+                sudo add-apt-repository ppa:repositoryname                     // https://launchpad.net/ubuntu/+ppas
+
+                    -> install application 
+                        sudo add-apt-repository ppa:phd/firefox
+                        sudo apt-get updatate
+
+
+                    -> remove package 
+                        (i) remove package method 1
+                            sudo add-apt-repository -r ppa:repositoryname   (or) sudo add-apt-repository --remove ppa:repositoryname 
+                            sudo apt-get update 
+
+                            sudo add-apt-repository -r ppa:phd/firefox 
+                            sudo apt-get update
+
+                            -> If can't uninstall , you can do manually as follow 
+                                sudo rm /etc/apt/sources.list.d/packagename 
+                                
+                                -> If can't uninstall, you can uninstall another way by key_name as follow 
+                                    sudo apt-key list               // find app keyname
+                                    sudo apt-key del keyid          // keyid must use to delete second_and_third key
+                                    sudo apt update 
+
+
+
+                        (ii) remove package method 2 (need = sudo apt install ppa-purge)
+                            sudo ppa-purge ppa:repositoryname 
+
+                            sudo ppa-purge ppa:phd/firefox  
+                            sudo apt-get update
 
 
 
 
-
-    => Method 3 
+    => Method 5
         Facial DEB download file install (.deb files on Ubuntu and Debian-based Linux Distributins)
+
+        -> .deb 
+            cd ~/Downloads/
+            sudo dpkg -i installatorfile
+
+            cd ~/Downloads/
+            sudo apt install install -f             // fix dependencies
+
+        
+        -> .run 
+            (i) cd ~/Downloads/
+                sudo chmod +x -i installatorfile         // make the file excutable 
+
+            (ii) cd ~/Downloads/
+                sudo installer_file.run           (or)   su installer_file.run
+
+
 
 
 
@@ -63,4 +203,20 @@
         echo "Hey guy, Is verything ok?" | sudo wall
 
 
-        
+    => Nodejs Latest Version 
+        Go = https://nodejs.org/en/download/package-manager
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+Note : if you need nvm (node version manager), you can install as following
+        Go = https://github.com/nvm-sh/nvm
+            export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+            source ~/.bashrc
+
+
+        nvm -v          0.39.7
+        node -v         v20.12.2
+        npm -v          10.5.0
+
+
+        =>
