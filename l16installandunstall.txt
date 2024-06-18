@@ -177,7 +177,7 @@
                 sudo chmod +x -i installatorfile         // make the file excutable 
 
             (ii) cd ~/Downloads/
-                sudo installer_file.run           (or)   su installer_file.run
+                sh installer_file.run                      [ sudo installer_file.run           (or)   su installer_file.run ]
 
 
 

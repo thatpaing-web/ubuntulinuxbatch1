@@ -1,0 +1,197 @@
+=> webserver
+
+=> Step 1 : Updare Your System 
+
+    sudo apt-get update 
+    sudo apt-get upgrade -y
+
+
+------------------------------------------------------
+
+=> Step 2 : Install Apache 
+
+    sudo apt install apache2 
+
+    Question : Do you want to continue? [y/n] y 
+
+    Config : /etc/apache2/apache2.conf                  The main configuration file is located
+
+    sudo a2enmod rewrite                    (a2enmod = apache enable moad)     to enable URL rewritting , you can enable the mode rewrite module
+    sudo systemctl restart apache2 
+
+    Note : sudo systemctl enable apache2 
+            sudo systemctl restart apache2 
+
+------------------------------------------------------
+
+=> Step 3 : Manage Firewall 
+
+    ufw status 
+        sudo ufw enable                 [in this step don't turn off terminal]
+
+    ufw status 
+        sudo ufw allow ssh 
+        sudo ufw allow 3306             for mysql port 
+
+
+    ufw app list 
+        sudo ufw allow 'Apache'             to allow HTTP traffic on port : 80 
+        sudo ufw allow 'Apache Secure'      to allow HTTPS traffic on port : 3306
+        sudo ufw allow 'Apache Full'        to allow both HTTP and HTTPS traffic 
+
+
+        sudo ufw status 
+        sudo ufw reload 
+
+------------------------------------------------------
+
+=> Step 4 : Install MySQL 
+
+    sudo apt install mysql-server 
+
+    Question : Do you want to continute? [y/n] y 
+
+        sudo mysql_secure_installation 
+
+    Question : Press y|Y for yes, any other key for No : n
+                Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
+                Disallow root login remotely? (Press y|Y for yes, any other key for No) : n 
+                Renove test database and access to it? (Press y|Y for yes, any other key for No) : y 
+                Reload privilege tables now ? (Press y|Y for yes, any other key for No) : y 
+
+
+
+        Note : sudo systemctl status mysql                  check MySQL status  
+                sudo systemctl start mysql 
+
+        Note : mysql --version                                  Check Version Without Login
+                sudo mysql          or    sudo mysql -u root 
+                SELECT version()                                Check Version Without Login
+                exit                or    \q
+
+------------------------------------------------------
+
+
+=> Step 5 : Install PHP 
+
+    sudo apt install software-properties-common
+    sudo apt install php         php -v         or     php -version
+
+Question : Do you want to continue? [y/n] y 
+
+    sudo nano /var/www/html/info.php 
+
+    <?php 
+        phpinfo();
+    ?>
+
+    Test : enter this url to your browser http://yourserverip/info.php
+
+------------------------------------------------------
+
+=> Step 6 : Install phpMyadmin    [it shoult not to be installed in real work ]
+
+    sudo apt install phpmyadmin 
+
+Question : Do you want to continue? [y/n] y 
+            Configuring phpMyadmin          Note : move cursor top/bottom arrow key, choose spacebar, tab change mode
+            Configure database for phpmyadmin with dbconfig-common? y 
+            MySQL application password for phpmyadmin : mydbserver2024
+
+    sudo systemctl restart apache2 
+
+
+    Test : enter this url to your browser http://yourserverip/info.php
+
+------------------------------------------------------
+
+=> Step 7 : Set password For Root Account (For Mysql 8.0 and later versions)
+
+            sudo mysql -u root
+
+            ALTER USER 'root'@'localhost' WITH mysql_native_password BY 'mydbserver2025';
+
+            GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
+
+            FLUSH PRIVILEGES;
+
+            exit    (or)  \q
+
+            mysql -u root -p -h yourserverip                    (-u = usrename , -p = password , -h = host)
+            mysql -u root -p -h 139.59.230.166                          // access deny (cuz your root account don't have remote permission )
+
+    Note : never access remote permission in root account
+------------------------------------------------------
+
+=> Step 8 : Configure Database Remote Access (Optional)
+
+    sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf                        //Edit mysql configuration 
+
+    bind-address : 127.0.0.1                                            // find this line 
+    bind-address : 0.0.0.0                                              // and change it to 
+
+    sudo systemctl restart mysql 
+
+    sudo mysql -u root -p 
+    mydbserver2025
+
+
+    CREATE USER 'user1'@'%' IDENTIFIED BY 'userdbserver2025';
+
+    GRANT ALL PRIVILEGES ON *.* TO 'user1'@'%' WITH GRANT OPTION;
+
+    FLUSH PRIVILEGES;
+
+    exit;
+
+
+    mysql -u root -p -h userserverip                        // access deny (cuz root account donsn't have remote permission)\
+
+    mysql -u user1 -p -h userserverip                       // access ( cuz user1 account have access permission)
+
+
+
+
+    Linux = ping 192.160.100.1
+            ifconfig  / route
+            traceroute 192.168.100.0                    // need to install sudo apt install traceroute if doesn't exist
+            whois 192.168.100.0                         // need to install sudo apt install whois  if doens't exist
+
+    Windows =   ping 192.168.100.1     (or) ping 192.168.100.1 -t
+                ipconfig 
+                tracert 192.168.100.0
+                nslookup 192.168.100.0
+
+
+
+    localhost/phpmyadmin 
+    http://localhost/
+    http://localhost/phpmyadmin
+
+
+
+     
+
+
+
+------------------------------------------------------
+
+=> Step 9 : Connect DNS Server (Domain Name Server)
+
+    continue to Cloud Computing class 
+
+------------------------------------------------------
+
+=> Step 10 : SSL Certificate
+
+    continue to Cloud Computing class 
+
+------------------------------------------------------
+
+=> Step 11 : Other 
+
+    git 
+    composer 
+    npm 
+    nvm 
+    node
