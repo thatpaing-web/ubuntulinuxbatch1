@@ -1,0 +1,37 @@
+=> Upload Project to Cloud VPS (static website)
+
+    git -v 
+    git config --global user.name 'username"
+    git config user.name 
+    git config --global user.email "youremail"
+    git config user.email 
+
+    ssh-keygen  [if you need to export keygen, you can export using this command]
+    ls -la 
+    cat /root/.ssh/id_ed25519.pub   [need to instead your id]
+
+    ssh -T git@github.com           [to check connect between github & localmechine ]
+    git clone git@github.com:yourgithublink 
+
+    ls -la
+
+    => Pull request for latest changes 
+    cd /var/www/html/yourprojectname
+    git pull origin main 
+
+------------------------------------------------------
+
+=> Apache Config for default directory
+
+    -> Change ownership and permission (-R = recursive)
+        sudo chown -R www-data:www-data /var/www/html/yourprojectname 
+        sudo chmod -R 755 /var/www/html/yourprojectname
+
+    -> Modify the apache configuration file 
+        sudo nano /etc/apache2/sites-avaliable/000-default.conf 
+
+    -> Find & Edit 
+        documentRoot /var/www/html    change_to  DocumentRoot /var/www/html/yourprojectname 
+
+        sudo systemctl restart apache2 
+------------------------------------------------------
