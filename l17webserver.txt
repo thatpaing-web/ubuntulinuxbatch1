@@ -261,11 +261,13 @@ Question : Do you want to continue? [y/n] y
 
                 nvm intall v22.3.0
                 num use v22.3.0 
+                nvm alias default v22.3.0
 
             eg. (downgrade to use )
 
-                nvm install v18.20.3    (if the version is our of date , )
-                nvm use v18.20.3
+                nvm install v20.14.0    (if the version is out of date , )
+                nvm use v20.14.0
+                nvm alias default v20.14.0
 
 
     => npm
@@ -307,6 +309,16 @@ Question : Do you want to continue? [y/n] y
         sudo rm -rf /etc/mysql
         sudo rm -rf /var/lib/mysql
         sudo rm -rf /var/log/mysql 
+
+------------------------------------------------------
+
+=> Uninstall PHP 
+    sudo apt remove 'php*'
+    sudo apt purge 'php*'
+
+    sudo apt-get update 
+    sudo apt-get upgrade 
+
 
 ------------------------------------------------------
 

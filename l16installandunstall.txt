@@ -119,6 +119,11 @@
                         sudo snap refresh 
 
 
+            => Install Application from Snap Official Website 
+                https://snapcraft.io/
+                
+        ............................................
+
             => Method 4 : Using PPA (Personal Package Archive)
 
                 -> Viewing installed 
@@ -168,19 +173,68 @@
             cd ~/Downloads/
             sudo dpkg -i installatorfile
 
+            sudo dpkg -i slack-desktop-4.38.125-amd64.deb  (i = install)
+            sudo dpkg -i expressvpn_3.72.0.0-1_amd64.deb
+
             cd ~/Downloads/
-            sudo apt install install -f             // fix dependencies
+            sudo apt-get install install -f             // fix dependencies
+
+        -> Unstall
+            sudo dpkg -r slack-desktop              (r = remove)
+            sudo apt autoremove 
+            sudo apt autoclean
+
+
+        -> .deg using gdebi   (sudo apt install gdebi)
+
+            cd ~/Downloads/
+            sudo gdebi -i packagename
+            
+            sudo gdebi slack-desktop-4.38.125-amd64.deb
+
+            sudo gdebi expressvpn_3.72.0.0-1_amd64.deb
 
         
         -> .run 
             (i) cd ~/Downloads/
-                sudo chmod +x -i installatorfile         // make the file excutable 
+                sudo chmod +x -i installorfile         // make the file excutable 
 
             (ii) cd ~/Downloads/
                 sh installer_file.run                      [ sudo installer_file.run           (or)   su installer_file.run ]
 
 
+...........................................................................
 
+=> Optional 
+
+    -> Official site 
+        https://flatpak.org/
+
+    -> Store 
+        https://flathub.org/
+
+
+        sudo apt install flatpak
+        flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+        => Get update 
+            flatpak update
+
+        => Install a Flatpak App 
+            Note:: remove .flatpakref from downloaded filename
+
+            flatpak install flathub org.mozilla.firefox
+
+                Question : do you want to install it? y/n : y 
+                            proceed with these changes to the system installation? y/n : y
+
+        => Run the platpak app 
+            flatpak run org.mozilla.firefox
+
+        => remove platpak app
+            flatpak uninstall org.mozilla.firefox
+
+...........................................................................
 
 
 
@@ -204,19 +258,77 @@
 
 
     => Nodejs Latest Version 
-        Go = https://nodejs.org/en/download/package-manager
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+        https://nodejs.org/en/download/package-manager
 
-Note : if you need nvm (node version manager), you can install as following
-        Go = https://github.com/nvm-sh/nvm
-            export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-            source ~/.bashrc
+        sudo apt install curl 
+
+    => nvm   (nvm -v)
+
+        https://github.com/nvm-sh/nvm
+
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+        export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+        source ~/.bashrc
+
+        nvm -v 
 
 
-        nvm -v          0.39.7
-        node -v         v20.12.2
-        npm -v          10.5.0
+        => node 
+
+            nvm install 22 
+
+            node -v                     // v22.3.0
+            npm -v                      // 10.8.1
 
 
-        =>
+        => Set node version (Optional)
+
+            nvm ls      (or)   nvm list        (or)    nvm list-remote 
+
+            eg  (update to use) nee to check version in official website
+
+                nvm intall v22.3.0
+                num use v22.3.0 
+                nvm alias default v22.3.0
+
+            eg. (downgrade to use )
+
+                nvm install v20.14.0    (if the version is out of date , )
+                nvm use v20.14.0
+                nvm alias default v20.14.0
+
+.........................................................................
+
+=> Unstall/Install the Ubuntu Software Center 
+
+    sudo apt update 
+    sudo apt upgrade -y 
+
+    sudo apt remove gnome-software     
+    sudo apt purge gnome-software 
+
+    (or)
+
+    sudo apt remove --purge gnome-software 
+
+Note:: in old version, have to type ubntu-software instead of gnome-software | in the lasted version, have to type gnome-software instead of ubuntu-software
+
+    # Remove Unused Dependencies 
+      sudo apt autoremove 
+
+    # Fix Dependencies 
+      sudo apt-get install -f 
+
+    # Clean Up Configuration Files 
+      sudo apt autoclean
+    
+    -> Install 
+         sudo apt update 
+
+         sudo apt install gnome-software 
+
+         # Check for missing dependencies or fix broken dependencies 
+           sudo apt --fix-broken install

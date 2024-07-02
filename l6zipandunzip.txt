@@ -47,3 +47,17 @@ gunzip -v l1example.tar.gz
         tar xvf l1example.tar 
 
 Note:: the .tar.gz file need to extra two time , firstly extract .gz and then extract .tar
+
+
+-------------------------------------------------
+
+=> unrar 
+
+    sudo apt update
+    sudo apt upgrade 
+
+    sudo apt-get install unrar 
+
+    unrar x filename.rar
+
+-------------------------------------------------
