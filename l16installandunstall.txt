@@ -56,7 +56,7 @@
 
                 sudo ufw deny from 192.168.100.0/20          (block a subnet)
                 
-                sudo ufw deny in on eth0 from 192.168.100.0     (block incomming connection to a network interface)
+                sudo ufw deny in on e from 192.168.100.0     (block incomming connection to a network interface)
                 sudo ufw allow in eth0 from 192.168.100.0       (Allow incomming connection to a network interface)
 
                 ufw status 
@@ -175,6 +175,8 @@
 
             sudo dpkg -i slack-desktop-4.38.125-amd64.deb  (i = install)
             sudo dpkg -i expressvpn_3.72.0.0-1_amd64.deb
+            (to activate type - > expressvpn activate
+            to connect -> expressvpn connect)
 
             cd ~/Downloads/
             sudo apt-get install install -f             // fix dependencies
