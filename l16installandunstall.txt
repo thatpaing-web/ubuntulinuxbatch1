@@ -178,6 +178,12 @@
             (to activate type - > expressvpn activate
             to connect -> expressvpn connect)
 
+		[	
+		For Chrome, run “expressvpn install-chrome-extension”.
+		For Firefox, run “expressvpn install-firefox-extension”.
+		]
+		
+		
             cd ~/Downloads/
             sudo apt-get install install -f             // fix dependencies
 
